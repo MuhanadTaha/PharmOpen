@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33712.159
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmOpen", "PharmOpen.csproj", "{0AF71480-FDA7-4CEA-A79F-58E248A13697}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0AF71480-FDA7-4CEA-A79F-58E248A13697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AF71480-FDA7-4CEA-A79F-58E248A13697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AF71480-FDA7-4CEA-A79F-58E248A13697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AF71480-FDA7-4CEA-A79F-58E248A13697}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9DE03F2-92C2-4467-984D-D4C9D1AA25C0}
+	EndGlobalSection
+EndGlobal
