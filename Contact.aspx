@@ -5,15 +5,15 @@
         <h2 id="title"><%: Title %>.</h2>
         <h3>Your contact page.</h3>
         <address>
-            One Microsoft Way<br />
-            Redmond, WA 98052-6399<br />
-            <abbr title="Phone">P:</abbr>
-            425.555.0100
+            Bethlahim<br />
+            almahd church<br />
+            <abbr title="Phone">Phone:</abbr>
+            0599 11 22 33
         </address>
 
         <address>
-            <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-            <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+            <strong>Support:</strong>   <a href="mailto:Support@example.com">PharmOpen@gmail.com.com</a><br />
+            <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Haifa@gmail.com</a>,  <a href="mailto:Marketing@example.com">Tasneem@gmail.com</a> 
         </address>
     </main>
 </asp:Content>

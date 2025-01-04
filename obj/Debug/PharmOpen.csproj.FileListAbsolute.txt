@@ -71,9 +71,6 @@ C:\Users\user\source\repos\PharmOpen\obj\Debug\PharmOpen.csproj.CoreCompileInput
 C:\Users\user\source\repos\PharmOpen\obj\Debug\PharmOpen.csproj.CopyComplete
 C:\Users\user\source\repos\PharmOpen\obj\Debug\EKhadori.dll
 C:\Users\user\source\repos\PharmOpen\obj\Debug\EKhadori.pdb
-C:\Users\user\source\repos\pharm\PharmOpen\bin\EKhadori.dll.config
-C:\Users\user\source\repos\pharm\PharmOpen\bin\EKhadori.dll
-C:\Users\user\source\repos\pharm\PharmOpen\bin\EKhadori.pdb
 C:\Users\user\source\repos\pharm\PharmOpen\bin\roslyn\csc.exe
 C:\Users\user\source\repos\pharm\PharmOpen\bin\roslyn\csc.exe.config
 C:\Users\user\source\repos\pharm\PharmOpen\bin\roslyn\csc.rsp
@@ -142,5 +139,8 @@ C:\Users\user\source\repos\pharm\PharmOpen\bin\Microsoft.CodeDom.Providers.DotNe
 C:\Users\user\source\repos\pharm\PharmOpen\obj\Debug\PharmOpen.csproj.AssemblyReference.cache
 C:\Users\user\source\repos\pharm\PharmOpen\obj\Debug\PharmOpen.csproj.CoreCompileInputs.cache
 C:\Users\user\source\repos\pharm\PharmOpen\obj\Debug\PharmOpen.csproj.CopyComplete
-C:\Users\user\source\repos\pharm\PharmOpen\obj\Debug\EKhadori.dll
-C:\Users\user\source\repos\pharm\PharmOpen\obj\Debug\EKhadori.pdb
+C:\Users\user\source\repos\pharm\PharmOpen\bin\PharmOpen.dll.config
+C:\Users\user\source\repos\pharm\PharmOpen\bin\PharmOpen.dll
+C:\Users\user\source\repos\pharm\PharmOpen\bin\PharmOpen.pdb
+C:\Users\user\source\repos\pharm\PharmOpen\obj\Debug\PharmOpen.dll
+C:\Users\user\source\repos\pharm\PharmOpen\obj\Debug\PharmOpen.pdb

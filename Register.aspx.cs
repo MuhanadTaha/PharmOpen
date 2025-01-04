@@ -24,7 +24,7 @@ namespace PharmOpen
             SqlDataReader dr;
             con.Open();
             cmd.Connection = con;
-            cmd.CommandText = "select * from signup where email = '" + txtEmail.Text + "' ";
+            cmd.CommandText = "select * from users where email = '" + txtEmail.Text + "' ";
 
             dr = cmd.ExecuteReader();
             if (dr.HasRows)
@@ -36,7 +36,7 @@ namespace PharmOpen
             {
                 con.Close();
                 con.Open();
-                cmd = new SqlCommand("insert into signup values('" + txtFirstName.Text + "'  , '" + txtLastName.Text + "' , '" + txtMobile.Text + "' ,  '" + txtDOB.Text + "' ,  '" + txtEmail.Text + "',  '" + txtPassword.Text + "' , '" + txtCPassword.Text + "' , '" + ddlGender.Text + "' ,'customer')", con);
+                cmd = new SqlCommand("insert into users values('" + txtFirstName.Text + "'  , '" + txtLastName.Text + "' , '" + txtMobile.Text + "' ,  '" + txtDOB.Text + "' ,  '" + txtEmail.Text + "',  '" + txtPassword.Text + "' , '" + txtCPassword.Text + "' , '" + ddlGender.Text + "' ,'customer')", con);
 
                 cmd.ExecuteNonQuery();
            

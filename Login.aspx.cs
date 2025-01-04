@@ -18,26 +18,43 @@ namespace PharmOpen
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            SqlCommand cmd = new SqlCommand();
-            SqlCommand objcmd = null;
-
+            // فتح الاتصال بقاعدة البيانات
             con.Open();
-            string stmt = "select * from signup where email = '" + txtEmail.Text + "'  and password = '" + txtPassword.Text + "' ";
-            objcmd = new SqlCommand(stmt, con);
 
+            // استعلام للتحقق من صحة البريد الإلكتروني وكلمة المرور واستخراج الـ id في نفس الوقت
+            string stmt = "SELECT id FROM users WHERE email = @Email AND password = @Password";
+
+            SqlCommand objcmd = new SqlCommand(stmt, con);
+
+            // استخدام المعاملات لتحسين الأمان ومنع هجمات SQL Injection
+            objcmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+            objcmd.Parameters.AddWithValue("@Password", txtPassword.Text);
+
+            // تنفيذ الاستعلام وقراءة البيانات
             SqlDataReader reader = objcmd.ExecuteReader();
 
             if (reader.Read())
             {
+                // تخزين قيمة الـ id في الـ Session
                 Session["Email"] = txtEmail.Text;
+                Session["id"] = reader["id"]; // استخدم reader["id"] لاستخراج الـ id
+
+                // تأكيد أنه تم تخزين الـ id في الـ Session
+                //Response.Write("User ID: " + Session["id"].ToString());
+
+                // إعادة التوجيه إلى الصفحة الرئيسية
                 Response.Redirect("Default.aspx");
             }
             else
             {
-                Response.Write("<script>alert('Invalid Password or Email ...');</script>");
-
+                // إذا كانت البيانات غير صحيحة، عرض رسالة خطأ
+                Response.Write("<script>alert('Invalid Email or Password');</script>");
             }
+
+            // إغلاق الاتصال
+            con.Close();
         }
+
 
     }
 }

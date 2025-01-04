@@ -19,7 +19,7 @@ namespace PharmOpen
             if (!IsPostBack)
             {
                 Authantication();
-                Authorization();
+                Authorization(); 
             }
           
 
@@ -37,7 +37,7 @@ namespace PharmOpen
 
         protected void Authantication()
         {
-            string str = "select email from signup where Email= '" + Session["Email"] + "' ";
+            string str = "select email from users where Email= '" + Session["Email"] + "' ";
             SqlCommand cmd = new SqlCommand(str, con);
             con.Open();
             string Result = Convert.ToString(cmd.ExecuteScalar());
@@ -46,8 +46,8 @@ namespace PharmOpen
             {
                 // ddlAdmin.Visible = false;
 
-                btnProduct.Visible = false;
-                btnCategory.Visible = false;
+                btnPharm.Visible = false;
+                btnAds.Visible = false;
                 
 
             }
@@ -56,14 +56,15 @@ namespace PharmOpen
                 btnOut.Visible = true;
                 btnLogin.Visible = false;
                 btnRegister.Visible = false;
-                btnOrder.Visible = true;
+                btnTips.Visible = true;
+                btnVillages.Visible = true;
             }
             con.Close();
         }
 
         protected void Authorization()
         {
-            string str = "select authorized from signup where Email= '" + Session["Email"] + "' ";
+            string str = "select authorized from users where Email= '" + Session["Email"] + "' ";
             SqlCommand cmd = new SqlCommand(str, con);
             con.Open();
             string Result = Convert.ToString(cmd.ExecuteScalar());
@@ -72,14 +73,18 @@ namespace PharmOpen
             {
                 //ddlAdmin.Visible = true;
 
-                btnProduct.Visible = true;
-                btnCategory.Visible = true;
+                btnPharm.Visible = true;
+                btnAds.Visible = true;
+                btnTips.Visible = true;
+                btnVillages.Visible = true;
             }
             else
             {
 
-                btnProduct.Visible = false;
-                btnCategory.Visible = false;
+                btnPharm.Visible = false;
+                btnAds.Visible = false;
+                btnTips.Visible = false;
+                btnVillages.Visible = false;
             }
             con.Close();
         }

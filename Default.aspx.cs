@@ -1,134 +1,95 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Configuration;
+using System.Web.UI.WebControls;
 
 namespace PharmOpen
 {
-    public partial class _Default : Page
+    public partial class Default : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["EShoppDBConnectionString"].ConnectionString);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                DisplayProducts();
-                DisplayCategories();
+                DisplayShifts();
+                DisplayTips();
+                DisplayAds();
             }
-           
         }
 
-        public void DisplayProducts()
+        private void DisplayShifts()
         {
+            // الاستعلام للحصول على البيانات
+            SqlCommand cmd = new SqlCommand("SELECT p.pharmacy_name, s.shift_day, v.village_name, c.city_name " +
+                                            "FROM shifts s " +
+                                            "INNER JOIN pharmacies p ON s.pharmacy_id = p.pharmacy_id " +
+                                            "INNER JOIN villages v ON p.village_id = v.village_id " +
+                                            "INNER JOIN cities c ON v.city_id = c.city_id " +
+                                            "WHERE DATEPART(WEEKDAY, s.shift_day) = 6", con);
+
             con.Open();
-            int idCatgeory = Convert.ToInt32(Request.QueryString["Category_ID"]);
-            string strProducts;
-            if (idCatgeory == 0)
-            {
-                strProducts = "select * from Products where Quantity <> 0";
-            }
-            else
-            {
-                strProducts = "select * from Products where Quantity <> 0 and CategoryId= '" + idCatgeory + "'";
-            }
-            SqlCommand cmd = new SqlCommand(strProducts, con);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            ddlProducts.DataSource = ds;
-            ddlProducts.DataBind();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            // تعيين مصدر البيانات للـ GridView
+            gvShifts.DataSource = reader;
+
+            // إيقاف AutoGenerateColumns
+            gvShifts.AutoGenerateColumns = false;
+
+            // إضافة الأعمدة يدويًا
+            gvShifts.Columns.Clear();
+
+            // إضافة عمود اسم الصيدلية
+            BoundField pharmacyColumn = new BoundField();
+            pharmacyColumn.DataField = "pharmacy_name";  // اسم العمود في قاعدة البيانات
+            pharmacyColumn.HeaderText = "اسم الصيدلية";  // النص الذي سيظهر في رأس العمود
+            gvShifts.Columns.Add(pharmacyColumn);
+
+            // إضافة عمود يوم المناوبة
+            BoundField shiftDayColumn = new BoundField();
+            shiftDayColumn.DataField = "shift_day";
+            shiftDayColumn.HeaderText = "يوم المناوبة";
+            gvShifts.Columns.Add(shiftDayColumn);
+
+            // إضافة عمود اسم القرية
+            BoundField villageColumn = new BoundField();
+            villageColumn.DataField = "village_name";
+            villageColumn.HeaderText = "اسم القرية";
+            gvShifts.Columns.Add(villageColumn);
+
+            // إضافة عمود اسم المدينة
+            BoundField cityColumn = new BoundField();
+            cityColumn.DataField = "city_name";
+            cityColumn.HeaderText = "اسم المدينة";
+            gvShifts.Columns.Add(cityColumn);
+
+            // ربط البيانات بـ GridView
+            gvShifts.DataBind();
+
             con.Close();
         }
 
-        public void DisplayCategories()
+
+        private void DisplayTips()
         {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM tips", con);
             con.Open();
-            string strProducts = "select * from Categories";
-            SqlCommand cmd = new SqlCommand(strProducts, con);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            dlCateg.DataSource = ds;
-            dlCateg.DataBind();
+            SqlDataReader reader = cmd.ExecuteReader();
+            rptTips.DataSource = reader;
+            rptTips.DataBind();
             con.Close();
         }
 
-        protected void dlReplies_ItemCommand(object source, DataListCommandEventArgs e)
+        private void DisplayAds()
         {
-            if (e.CommandName == "Add")
-            {
-                if (Session["Email"] == null || Session["Email"].ToString() == "")
-                {
-                    Response.Redirect("LogIn.aspx");
-                }
-                else
-                {
-                    Label IdProduct = (Label)e.Item.FindControl("lblIdProduct");
-                    Label Name = (Label)e.Item.FindControl("lblName");
-                    Label Price = (Label)e.Item.FindControl("lblPrice");
-                    Label alert = (Label)e.Item.FindControl("lblAlert");
-                    Label IdCategory = (Label)e.Item.FindControl("lblCategory");
-                    TextBox Count = (TextBox)e.Item.FindControl("txtCount");
-
-                    con.Open();
-
-                    if (CheckQuantityProduct(IdProduct.Text) >= Convert.ToInt32(Count.Text))
-                    {
-                        string str = "insert into Orders (NameProducts,NameCategories,BuyerUser,Price,Arrive,Count) Values (@NameProducts,@NameCategories,@BuyerUser,@Price,@Arrive,@Count)";
-                        SqlCommand cmd = new SqlCommand(str, con);
-                        cmd.Parameters.AddWithValue("@NameProducts", Name.Text);
-                        cmd.Parameters.AddWithValue("@NameCategories", DisplayCateigores(IdCategory.Text));
-                        cmd.Parameters.AddWithValue("@BuyerUser", Session["Email"].ToString());
-                        cmd.Parameters.AddWithValue("@Price", Convert.ToSingle(Price.Text));
-                        cmd.Parameters.AddWithValue("@Arrive", "No");
-                        cmd.Parameters.AddWithValue("@Count", Convert.ToInt32(Count.Text));
-                        alert.Text = "Buy Succeeded";
-                        cmd.ExecuteNonQuery();
-                        increaseProd(IdProduct.Text, Count.Text);
-                    }
-                    else
-                    {
-                        alert.Text = "Out of stock";
-                        alert.BackColor = Color.Red;
-                    }
-                    alert.Visible = true;
-                    con.Close();
-                }
-            }
+            SqlCommand cmd = new SqlCommand("SELECT * FROM ads", con);
+            con.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            rptAds.DataSource = reader;
+            rptAds.DataBind();
+            con.Close();
         }
-
-        protected string DisplayCateigores(string IdCategory)
-        {
-            string str = "select Name from Categories where ID= @ID ";
-            SqlCommand cmd = new SqlCommand(str, con);
-            cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(IdCategory));
-            string result = Convert.ToString(cmd.ExecuteScalar());
-            return result;
-        }
-
-        protected void increaseProd(string IdProduct, string Count)
-        {
-            string str = "update Products set Quantity = Quantity -" + Convert.ToInt32(Count) + " where ID= @IDProd AND Quantity > 0";
-            SqlCommand cmd = new SqlCommand(str, con);
-            cmd.Parameters.AddWithValue("@IDProd", Convert.ToInt32(IdProduct));
-            cmd.ExecuteNonQuery();
-        }
-
-        protected int CheckQuantityProduct(string IdProduct)
-        {
-            string str = "select Quantity from Products where ID= @ID ";
-            SqlCommand cmd = new SqlCommand(str, con);
-            cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(IdProduct));
-            int result = Convert.ToInt32(cmd.ExecuteScalar());
-            return result;
-        }
-
-
     }
 }

@@ -15,31 +15,40 @@ namespace PharmOpen
     {
 
         /// <summary>
-        /// btnCategory control.
+        /// btnAds control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnCategory;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnAds;
 
         /// <summary>
-        /// btnProduct control.
+        /// btnPharm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnProduct;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnPharm;
 
         /// <summary>
-        /// btnOrder control.
+        /// btnTips control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnOrder;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnTips;
+
+        /// <summary>
+        /// btnVillages control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnVillages;
 
         /// <summary>
         /// btnLogin control.

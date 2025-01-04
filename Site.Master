@@ -47,11 +47,12 @@
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/CategoryList.aspx" id="btnCategory">Categories</a></li>
-                         <li class="nav-item"><a class="nav-link" runat="server" href="~/ProductsList.aspx" id="btnProduct">Products</a></li>
-                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Orders.aspx"  id="btnOrder" visible="false">My Orders</a></li>
-                       
-                   
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/AdsList.aspx" id="btnAds">Ads</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/PharmaciesList.aspx" id="btnPharm">Pharmacies</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/TipsList.aspx" id="btnTips" visible="false">Tips</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/VillageList.aspx" id="btnVillages" visible="false">Villages</a></li>
+
+
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/About">About</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
                     </ul>
@@ -73,13 +74,13 @@
             <hr />
             <footer>
                 <p>&copy;2024  - Pharmacy</p>
-               
+
 
             </footer>
         </div>
 
         <script type="text/javascript" src="Scripts/bootstrap.min.js "></script>
-      
+
     </form>
 
 

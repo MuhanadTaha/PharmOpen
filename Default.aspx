@@ -1,68 +1,66 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="PharmOpen._Default" %>
+﻿<%@ Page Title="الصفحة الرئيسية" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="PharmOpen.Default" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <section>
-        <%= Session["Email"] %>
-    </section>
-    <main>
-        <center>
-            <asp:DataList ID="dlCateg" RepeatDirection="Horizontal" RepeatColumns="10" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <div dir="rtl">
+        <h2>المناوبات في محافظة الخليل</h2>
+        <br />
+        <!-- عرض المناوبات -->
+        <h3></h3>
+        <asp:GridView ID="gvShifts" runat="server" AutoGenerateColumns="True" CssClass="table table-bordered">
+        </asp:GridView>
+
+        <br />
+        <h3>النصائح</h3>
+        <div class="row">
+            <asp:Repeater ID="rptTips" runat="server">
                 <ItemTemplate>
-                    <div class="pr-1" runat="server">
-                        <center>
-                            <a class="btn btn-primary" href="Default.aspx?Category_ID=<%# Eval("Id")%>">
-                                <%#Eval("Name") %>  
-                            </a>
-                        </center>
+                    <!-- عرض الإعلان -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="<%# Eval("tip_image") %>" class="card-img-top" alt="نصائح" style="width: 100%; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="tipDetails.aspx?tip_id=<%# Eval("tip_id") %>">
+                                        <%# Eval("tip_title") %>
+                                    </a>
+                                </h5>
+                                <p class="card-text"><%# Eval("tip_content").ToString().Substring(0, Math.Min(Eval("tip_content").ToString().Length, 60)) %>...</p>
+                            </div>
+                        </div>
                     </div>
                 </ItemTemplate>
-            </asp:DataList>
+            </asp:Repeater>
+        </div>
 
 
-             <br />
+        <br />
+        <h3 >الإعلانات</h3>    <!-- زر الاشتراك لفتح النافذة المنبثقة -->
+       
+        <div class="row">
+            <asp:Repeater ID="rptAds" runat="server">
+                <ItemTemplate>
+                    <!-- عرض الإعلان -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="<%# Eval("ad_image") %>" class="card-img-top" alt="إعلان" style="width: 100%; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="AdDetails.aspx?ad_id=<%# Eval("ad_id") %>">
+                                        <%# Eval("ad_title") %>
+                                    </a>
+                                </h5>
+                                <p class="card-text"><%# Eval("ad_content").ToString().Substring(0, Math.Min(Eval("ad_content").ToString().Length, 60)) %>...</p>
+                            </div>
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
 
-    <asp:DataList ID="ddlProducts" RepeatDirection="Horizontal" RepeatColumns="4" runat="server" OnItemCommand="dlReplies_ItemCommand">
-        <ItemTemplate>
-            <div style="border-radius: 5px; padding: 10px; margin: 10px; border: solid 1px" runat="server">
-                <center>
-                    <table style="width: 250px">
-                        <tr>
-                            <asp:Label ID="lblCategory" runat="server" Text='<%#Eval("CategoryId") %>' Visible="false"></asp:Label>
-                            <asp:Label ID="lblIdProduct" runat="server" Text='<%#Eval("ID") %>' Visible="false"></asp:Label>
-                            <asp:Label ID="lblQuantity" runat="server" Text='<%#Eval("Quantity") %>' Visible="false"></asp:Label>
 
-
-
-                            <asp:Image ID="imgCategories" runat="server" Style="width: 230px; height: 180px; object-fit: cover; border: solid 1px #bbbbbb" ImageUrl='<%# "~/Image/ImageProducts/" + Eval("Image") %>' />
-                            <br />
-                            <br />
-                            <asp:Label ID="lblName" runat="server" Text='<%#Eval("Name") %>'></asp:Label>
-                            <br />
-                            <br />
-                            <asp:Label ID="lblPrice" runat="server" Text='<%#Eval("Price") %>' Style="font-weight: bold;"></asp:Label>
-                            NLS
-                   
-                            <br />
-                            <br />
-                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("Description").ToString().Length > 30 ? Eval("Description").ToString().Substring(0, 30) : Eval("Description") %>' Style="font-weight: bold;"></asp:Label>
-
-                            <%--<asp:Label ID="lblDetails" runat="server" Text='<%#Eval("Description") %>' Style="font-weight: bold;"></asp:Label>--%>
-                            <br />
-                            <br />
-                            <asp:TextBox value="1" min="1" max="90"  placeholder="Enter a Quantity" ID="txtCount" type="number" CssClass="form-control text-center" runat="server"></asp:TextBox>
-                            <br />
-                            <asp:Button ID="btnBuy" CommandName="Add" runat="server" Text="Buy" CssClass="btn btn-primary btn-sm"></asp:Button>
-                            <br />
-                            <br />
-                            <asp:Label ID="lblAlert" runat="server" Text="" CssClass="alert alert-success" Visible="false" Style="font-weight: bold;"></asp:Label>
-
-                        </tr>
-                    </table>
-                </center>
-            </div>
-        </ItemTemplate>
-    </asp:DataList>
-        </center>
-    </main>
-
+        <br />
+         <a class="btn btn-danger d-block" href="/Subscription.aspx">
+            اشترك الآن
+        </a>
+    </div>
 </asp:Content>

@@ -11,25 +11,34 @@ namespace PharmOpen
 {
 
 
-    public partial class _Default
+    public partial class Default
     {
 
         /// <summary>
-        /// dlCateg control.
+        /// gvShifts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlCateg;
+        protected global::System.Web.UI.WebControls.GridView gvShifts;
 
         /// <summary>
-        /// ddlProducts control.
+        /// rptTips control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList ddlProducts;
+        protected global::System.Web.UI.WebControls.Repeater rptTips;
+
+        /// <summary>
+        /// rptAds control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptAds;
     }
 }
