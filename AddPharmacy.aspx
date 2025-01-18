@@ -39,7 +39,7 @@
                 <div class="row mb-4">
                     <label for="txtShiftDate" class="col-sm-3 col-form-label" style="font-weight: bold;">تاريخ المناوبة:</label>
                     <div class="col-sm-9">
-                        <asp:TextBox ID="txtShiftDate" runat="server" CssClass="form-control" placeholder="اختر تاريخ المناوبة" Style="border-radius: 5px; border: 1px solid #ddd;" TextMode="Time" />
+                        <asp:TextBox ID="txtShiftDate" runat="server" CssClass="form-control" placeholder="اختر تاريخ المناوبة" Style="border-radius: 5px; border: 1px solid #ddd;" TextMode="DateTimeLocal"  />
                     </div>
                 </div>
 

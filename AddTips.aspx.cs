@@ -11,7 +11,13 @@ namespace PharmOpen
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // لا حاجة لشيء هنا في حالة عدم وجود طلبات POST
+            if (!IsPostBack)
+            {
+                if (Session["Email"] == null)
+                {
+                    Response.Redirect("Default.aspx");
+                }
+            }
         }
 
         protected void btnAddTip_Click(object sender, EventArgs e)

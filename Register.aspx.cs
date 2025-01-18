@@ -14,7 +14,13 @@ namespace PharmOpen
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["EShoppDBConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (Session["Email"] == null)
+                {
+                    Response.Redirect("Default.aspx");
+                }
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -36,7 +42,7 @@ namespace PharmOpen
             {
                 con.Close();
                 con.Open();
-                cmd = new SqlCommand("insert into users values('" + txtFirstName.Text + "'  , '" + txtLastName.Text + "' , '" + txtMobile.Text + "' ,  '" + txtDOB.Text + "' ,  '" + txtEmail.Text + "',  '" + txtPassword.Text + "' , '" + txtCPassword.Text + "' , '" + ddlGender.Text + "' ,'customer')", con);
+                cmd = new SqlCommand("insert into users values('" + txtFirstName.Text + "'  , '" + txtLastName.Text + "' , '" + txtMobile.Text + "' ,  '" + txtDOB.Text + "' ,  '" + txtEmail.Text + "',  '" + txtPassword.Text + "' , '" + txtCPassword.Text + "' , '" + ddlGender.Text + "' ,'admin')", con);
 
                 cmd.ExecuteNonQuery();
            
