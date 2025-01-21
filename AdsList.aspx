@@ -15,7 +15,7 @@
             <asp:BoundField DataField="ad_id" HeaderText="Ad ID" SortExpression="ad_id" ReadOnly="True" Visible="false" />
 
 
-            <asp:TemplateField HeaderText="Ad Title">
+            <asp:TemplateField HeaderText="عنوان الإعلان">
                 <ItemTemplate>
                     <%# Eval("ad_title") %>
                 </ItemTemplate>
@@ -25,7 +25,7 @@
             </asp:TemplateField>
 
 
-            <asp:TemplateField HeaderText="Ad Content">
+            <asp:TemplateField HeaderText="محتوى الإعلان">
                 <ItemTemplate>
                     <%# Eval("ad_content") %>
                 </ItemTemplate>
@@ -35,7 +35,7 @@
             </asp:TemplateField>
 
 
-            <asp:TemplateField HeaderText="Ad Image">
+            <asp:TemplateField HeaderText="الصورة">
                 <ItemTemplate>
 
                     <asp:Image ID="imgAdImage" runat="server"
@@ -51,7 +51,7 @@
             </asp:TemplateField>
 
 
-            <asp:TemplateField HeaderText="Added By">
+            <asp:TemplateField HeaderText="أضافه">
                 <ItemTemplate>
                     <%# Eval("email") %>
                 </ItemTemplate>
@@ -60,7 +60,7 @@
                 </EditItemTemplate>
             </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="User ID">
+            <asp:TemplateField HeaderText="رقم المستخدم">
                 <ItemTemplate>
                     <%# Eval("user_id") %>
                 </ItemTemplate>

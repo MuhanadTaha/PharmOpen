@@ -14,7 +14,7 @@
         <Columns>
             <asp:BoundField DataField="pharmacy_id" HeaderText="Pharmacy ID" SortExpression="pharmacy_id" ReadOnly="True" Visible="false" />
 
-            <asp:TemplateField HeaderText="Pharmacy Name">
+            <asp:TemplateField HeaderText="اسم الصيدلية">
                 <ItemTemplate>
                     <%# Eval("pharmacy_name") %>
                 </ItemTemplate>
@@ -23,7 +23,7 @@
                 </EditItemTemplate>
             </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Village Name">
+            <asp:TemplateField HeaderText="اسم القرية">
                 <ItemTemplate>
                     <%# Eval("village_name") %>
                 </ItemTemplate>
@@ -35,7 +35,7 @@
                 </EditItemTemplate>
             </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="City Name">
+            <asp:TemplateField HeaderText="اسم المدينة">
                 <ItemTemplate>
                     <%# Eval("city_name") %>
                 </ItemTemplate>
@@ -48,7 +48,7 @@
                 </EditItemTemplate>
             </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Added by">
+            <asp:TemplateField HeaderText="أضافه">
                 <ItemTemplate>
                     <%# Eval("email") %>
                 </ItemTemplate>
@@ -58,7 +58,7 @@
             </asp:TemplateField>
 
 
-            <asp:TemplateField HeaderText="User ID">
+            <asp:TemplateField HeaderText="رقم المستخدم">
                 <ItemTemplate>
                     <%# Eval("user_id") %>
                 </ItemTemplate>

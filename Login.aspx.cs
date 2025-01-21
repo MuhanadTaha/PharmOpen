@@ -48,7 +48,7 @@ namespace PharmOpen
             else
             {
                 // إذا كانت البيانات غير صحيحة، عرض رسالة خطأ
-                Response.Write("<script>alert('Invalid Email or Password');</script>");
+                Response.Write("<script>alert('الرقم السري أو الإيميل خطأ');</script>");
             }
 
             // إغلاق الاتصال

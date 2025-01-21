@@ -50,34 +50,26 @@ namespace PharmOpen
             string tipTitle = (GridView1.Rows[e.RowIndex].FindControl("txtEditAdTitle") as TextBox).Text;
             string tipContent = (GridView1.Rows[e.RowIndex].FindControl("txtEditAdContent") as TextBox).Text;
 
+            // الحصول على العنصر الخاص بالصورة الحالية
+            Label lblCurrentImage = GridView1.Rows[e.RowIndex].FindControl("lblCurrentImage") as Label;
+            string currentImagePath = lblCurrentImage.Text;
+
             // تحميل الصورة الجديدة إذا تم تحديدها
-            string tipImage = string.Empty;
+            string newImagePath = string.Empty;
             FileUpload fileUpload = GridView1.Rows[e.RowIndex].FindControl("fileUploadAdImage") as FileUpload;
+
             if (fileUpload != null && fileUpload.HasFile)
             {
                 // إذا كانت هناك صورة جديدة يتم حفظها
-                tipImage = "new_image_" + Guid.NewGuid().ToString() + System.IO.Path.GetExtension(fileUpload.FileName);
-                string savePath = Server.MapPath("~/images/tips/") + tipImage;
+                string fileName = "new_image_" + Guid.NewGuid().ToString() + System.IO.Path.GetExtension(fileUpload.FileName);
+                string savePath = Server.MapPath("~/images/tips/") + fileName;
                 fileUpload.SaveAs(savePath);
+                newImagePath = "images/tips/" + fileName; // بناء المسار الجديد
             }
             else
             {
-                // إذا لم يتم تحميل صورة جديدة، استخدم الصورة الحالية الموجودة في قاعدة البيانات
-                tipImage = (GridView1.Rows[e.RowIndex].FindControl("lblCurrentImage") as Label).Text;
-            }
-
-            // بناء المسار بشكل صحيح
-            // إذا كانت الصورة جديدة، نضيف المسار "images/tips/"، وإذا كانت الصورة القديمة، نتركها كما هي في قاعدة البيانات
-            string imagePath = string.Empty;
-            if (tipImage.Contains("images/tips/"))
-            {
-                // إذا كانت الصورة تحتوي على المسار الكامل، لا تضيفه مرة أخرى
-                imagePath = tipImage;
-            }
-            else
-            {
-                // إذا لم تكن تحتوي على المسار، أضف المسار الصحيح
-                imagePath = "images/tips/" + tipImage;
+                // إذا لم يتم تحميل صورة جديدة، استخدم المسار الحالي
+                newImagePath = currentImagePath;
             }
 
             int userId = Convert.ToInt32((GridView1.Rows[e.RowIndex].FindControl("txtEditUserId") as TextBox).Text);
@@ -89,7 +81,7 @@ namespace PharmOpen
                 cmd.Parameters.AddWithValue("@tip_id", tipid);
                 cmd.Parameters.AddWithValue("@tip_title", tipTitle);
                 cmd.Parameters.AddWithValue("@tip_content", tipContent);
-                cmd.Parameters.AddWithValue("@tip_image", imagePath); // حفظ المسار الصحيح للصورة
+                cmd.Parameters.AddWithValue("@tip_image", newImagePath); // استخدام المسار الصحيح
                 cmd.Parameters.AddWithValue("@user_id", userId);
 
                 con.Open();
@@ -100,6 +92,7 @@ namespace PharmOpen
             GridView1.EditIndex = -1;
             LoadAds(); // إعادة تحميل البيانات بعد التحديث
         }
+
 
 
 

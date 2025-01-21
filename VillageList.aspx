@@ -13,7 +13,7 @@
 
         <Columns>
             <asp:BoundField DataField="village_id" HeaderText="Village ID" SortExpression="village_id" ReadOnly="True" Visible="false" />
-            <asp:TemplateField HeaderText="Village Name">
+            <asp:TemplateField HeaderText="اسم القرية">
                 <ItemTemplate>
                     <%# Eval("village_name") %>
                 </ItemTemplate>
@@ -22,7 +22,7 @@
                 </EditItemTemplate>
             </asp:TemplateField>
 
-             <asp:TemplateField HeaderText="City Name">
+             <asp:TemplateField HeaderText="اسم المدينة">
                 <ItemTemplate>
                     <%# Eval("city_name") %>
                 </ItemTemplate>
